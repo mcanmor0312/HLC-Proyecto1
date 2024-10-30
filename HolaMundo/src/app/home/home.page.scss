@@ -27,9 +27,14 @@
 }
 
 .home-page {
-  background-image: url('elden.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+#img {
+  width: 100%; // Ajusta el ancho de la imagen
+  height: auto; // Mantiene la relación de aspecto
+  display: block; // Para que no haya espacios en blanco alrededor
+  margin: 0 auto; // Centrar la imagen
 }

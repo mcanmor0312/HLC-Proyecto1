@@ -8,8 +8,14 @@ import { Component } from '@angular/core';
 export class HomePage {
   guess: string = '';
   resultado: string = "...";
-  peliculas: string[] = ['El Padrino', 'Titanic', 'Avatar', 'El Señor de los Anillos', 'Inception'];
-  peliculaSecreta: string = this.peliculas[this.numAleatorio(0, this.peliculas.length - 1)];
+  peliculas: { nombre: string; imagen: string }[] = [
+    { nombre: 'El Padrino', imagen: 'assets/images/el_padrino.jpg' },
+    { nombre: 'Titanic', imagen: 'assets/images/titanic.jpg' },
+    { nombre: 'Avatar', imagen: 'assets/images/avatar.jpeg' },
+    { nombre: 'El Señor de los Anillos', imagen: 'assets/images/el_señor_de_los_anillos.jpg' },
+    { nombre: 'Inception', imagen: 'assets/images/The_Inception.png' },
+  ];
+  peliculaSecreta: { nombre: string; imagen: string } = this.peliculas[this.numAleatorio(0, this.peliculas.length - 1)];
   numAttempts: number = 0;
 
   constructor() {}
@@ -20,13 +26,12 @@ export class HomePage {
 
   compruebaPelicula() {
     this.numAttempts++;
-    if (this.guess.toLowerCase() === this.peliculaSecreta.toLowerCase()) {
+    if (this.guess.toLowerCase() === this.peliculaSecreta.nombre.toLowerCase()) {
       this.resultado = "¡Has acertado la película secreta!";
     } else {
-      // Proporcionar una letra y su posición
-      const letra = this.peliculaSecreta.charAt(this.numAttempts - 1); // Obtener la letra según el número de intentos
-      const posicion = this.peliculaSecreta.indexOf(letra) + 1; // Obtener la posición (1-indexed)
-      this.resultado =" Incorrecto. Te doy una letra: '${letra}' en la posición ${posicion}.";
+      const letra = this.peliculaSecreta.nombre.charAt(this.numAttempts - 1);
+      const posicion = this.peliculaSecreta.nombre.indexOf(letra) + 1;
+      this.resultado = `Incorrecto. Te doy una letra: '${letra}' en la posición ${posicion}.`;
     }
   }
 
