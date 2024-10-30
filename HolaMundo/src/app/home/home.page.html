@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Adivina la película</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <img src="tu-imagen-de-portada.jpg" alt="Portada" class="cover-image"> <!-- Cambia la URL de la imagen -->
+    <h2>Adivina la película:</h2>
+    
+    <input [(ngModel)]="guess" type="text" placeholder="Ingresa tu respuesta">
+    <button (click)="compruebaPelicula()" width="200">Comprobar</button>
+    
+    <p *ngIf="resultado">{{ resultado }}</p>
+    
+    <div class="result">
+      <h3>Intentos: {{ numAttempts }}</h3>
+    </div>
+
+    <ion-button expand="block" (click)="restartGame()" color="primary">
+      Volver a empezar
+    </ion-button>
+  </div>
+</ion-content>
